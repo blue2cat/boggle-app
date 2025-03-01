@@ -43,10 +43,12 @@ try {
   process.exit(1);
 }
 
-// Serve the frontend
+// Integrate the React app
+app.use(express.static("../client/build"));
+
+// Define the root route
 app.get("/", (req: Request, res: Response) => {
-  // TODO: serve the react frontend from here
-  res.send("Frontend");
+  res.sendFile("../client/build/index.html");
 });
 
 // Register the game routes
