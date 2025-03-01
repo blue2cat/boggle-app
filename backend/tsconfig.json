@@ -7,6 +7,6 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "include": ["src", "api/routes"],
+  "include": ["src", "api/routes", "src/interfaces"],
   "exclude": ["node_modules"]
 }
