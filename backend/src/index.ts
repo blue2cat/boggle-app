@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import gameRoutes from "./api/gameRoutes";
+import Board from "./interfaces/board"
 import * as rd from 'readline';
 import * as fs from 'fs';
 
@@ -13,6 +14,7 @@ app.use(express.json());
 // comply with game rules
 declare global {
   var words: Array<string>;
+  var serverBoard: Board;
 }
 
 global.words = Array<string>();
@@ -21,7 +23,7 @@ try {
   let totalInvalid = 0;
 
   // Open the word list file
-  var reader = rd.createInterface({
+  let reader = rd.createInterface({
     input: fs.createReadStream("words_large.txt")
   });
 

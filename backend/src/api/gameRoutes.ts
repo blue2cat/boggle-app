@@ -1,18 +1,24 @@
 import { Router, Request, Response } from 'express';
-import { randomBoard, validateBoard, zeroedBoard } from './helpers';
+import { importedBoard, randomBoard, validateBoard } from './helpers';
 const _ = require('lodash');
 
 // Build the API router
 const gameRouter = Router();
 
-gameRouter.get("/randomBoard", (req: Request, res: Response) => {
+gameRouter.use((req, res, next) => {
   res.header("Content-Type", "application/json");
+  next();
+});
+
+gameRouter.get("/randomBoard", (req, res) => {
   res.json(randomBoard());
 })
 
-// GET a 4x4 grid of characters - /submitRoll - verify that the submitted grid is valid and return the list of valid words
-gameRouter.post("/submitRoll", (req: Request, res: Response) => {
-  res.header("Content-Type", "application/json");
+gameRouter.get("/importedBoard", (req, res) => {
+  res.json(importedBoard());
+})
+
+gameRouter.post("/submitBoard", (req, res) => {
   res.json(validateBoard(req.body));
 })
 

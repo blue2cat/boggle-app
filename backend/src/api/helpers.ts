@@ -1,3 +1,4 @@
+import { glob } from "fs";
 import Board from "../interfaces/board";
 const _ = require('lodash');
 
@@ -14,6 +15,14 @@ function randomBoard(): Board {
     )
   };
   return newBoard;
+}
+
+function importedBoard(): Board {
+  if(global.serverBoard == null){
+    return randomBoard();
+  }else {
+    return global.serverBoard;
+  }
 }
 
 // zeroed 4x4 board
@@ -79,4 +88,4 @@ function isValidWord(word: string): Boolean {
 }
 
 // export the functions
-export { randomBoard, zeroedBoard, validChars, validateBoard };
+export { randomBoard, zeroedBoard, validChars, validateBoard, importedBoard };
