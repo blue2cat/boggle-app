@@ -6,7 +6,7 @@ import * as fs from 'fs';
 
 // Define the core app object
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 // Load the word list and alert the user about any that are too short to 
@@ -42,6 +42,12 @@ try {
   console.error("Unable to read in the words list, exiting. ");
   process.exit(1);
 }
+
+// This is a game, we don't care about CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // Integrate the React app
 app.use(express.static("../client/build"));
