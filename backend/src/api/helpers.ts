@@ -1,11 +1,6 @@
-import { glob } from "fs";
 import Board from "../interfaces/board";
+import validChars from "../constants/chars";
 const _ = require('lodash');
-
-// Return the valid characters for the board
-function validChars(): string[] {
-  return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-}
 
 // Restrict the matrix to only contain characters from A to Z
 function randomBoard(): Board {
@@ -18,11 +13,12 @@ function randomBoard(): Board {
 }
 
 function importedBoard(): Board {
-  if(global.serverBoard == null){
-    return randomBoard();
-  }else {
-    return global.serverBoard;
+  // If we don't have a board, generate one and set as the global board
+  if (global.serverBoard == null) {
+    global.serverBoard = randomBoard();
   }
+
+  return global.serverBoard;
 }
 
 // zeroed 4x4 board
@@ -88,4 +84,4 @@ function isValidWord(word: string): Boolean {
 }
 
 // export the functions
-export { randomBoard, zeroedBoard, validChars, validateBoard, importedBoard };
+export { randomBoard, validChars, validateBoard, importedBoard };

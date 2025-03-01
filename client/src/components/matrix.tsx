@@ -1,9 +1,13 @@
-import { useState, useEffect, JSX } from "react";
+import React, { useState, useEffect, JSX } from "react";
 import Board from "../interfaces/board";
 import Letter from "./letter";
 
+interface BoggleMatrixProps {
+  setResults: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
 // Build the matrix/board component and store state for the board, loading, and errors
-function BoggleMatrix() {
+function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
 
   // Since we're not really dealing with long loading times elsewhere in the app, only display
   // the loading spinner in the matrix/board div
@@ -31,6 +35,21 @@ function BoggleMatrix() {
     }
   }
 
+  // When a user requests the server imported board, get it from the API
+  function getServerImportedBoard() {
+    try {
+      setLoading(true)
+      fetch("http://localhost:3001/api/importedBoard")
+        .then((res) => res.json())
+        .then((data) => {
+          setBoard(data);
+          setLoading(false);
+        });
+    } catch {
+      setError(true);
+    }
+  }
+
   function submitBoard() {
     setLoading(true);
     fetch("http://localhost:3001/api/submitBoard", {
@@ -38,7 +57,7 @@ function BoggleMatrix() {
       body: JSON.stringify(board),
     }).then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setResults(data);
         setLoading(false);
       });
   }
@@ -92,6 +111,7 @@ function BoggleMatrix() {
       </div>
       <div className="button-container">
         <button className="button" onClick={getNewBoard}>New Board</button>
+        <button className="button" onClick={getServerImportedBoard}>Use Server Board</button>
         <button className="button" onClick={submitBoard}>Submit</button>
       </div>
     </div>
