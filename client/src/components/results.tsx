@@ -5,11 +5,11 @@ interface BoggleResultsProps {
 // Display the results of the Boggle game
 function BoggleResults({ results }: BoggleResultsProps){
   return (
-    <div className="results">
+    <div className="results-container">
       <h2>Results</h2>
       <ul>
-        {results.map((word, index) => (
-          <li key={index}>{word}</li>
+        {results[0] !== "no results" && results.map((result, i) => (
+          <li key={i}>{result}</li>
         ))}
       </ul>
     </div>

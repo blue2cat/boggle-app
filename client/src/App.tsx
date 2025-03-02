@@ -6,14 +6,31 @@ import BoggleMatrix from './components/matrix';
 
 function App() {
 
-  const [results, setResults] = useState<Array<string>>([]);
-  
+  const [results, setResults] = useState<Array<string>>(["no results"]);
+  const [showSettings, setShowSettings] = useState(false);
+
   return (
     <div className="app">
+      <div className='settings'>
+        <button className='settings-button' onClick={() => window.location.reload()}>New Game</button>
+        <button className='settings-button' onClick={() => setShowSettings(true)}>Settings / Rules</button>
+      </div>
       <div className="app-wrapper">
-        <Header title="Boggle 🎲" subtitle="Play a game of classic Boggle right from your browser." />
-        <BoggleMatrix setResults={setResults} />
-        <Results results={results} />
+        {showSettings ? (
+          <div className="settings-modal">
+            <div className="settings-modal-content">
+              <h2>Settings</h2>
+              <p>Settings go here</p>
+              <button onClick={() => setShowSettings(false)}>Close</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <Header title="Boggle 🎲"/>
+            <BoggleMatrix setResults={setResults} />
+            <Results results={results} />
+          </>
+        )}
       </div>
     </div>
   );

@@ -11,34 +11,33 @@
   display: flex;
   justify-content: center;
   margin-top: auto;
-  width: 100%;
 }
 
 .button {
   background-color: #f2eee9;
   color: #003f8c;
-  padding: 15px 32px;
+  padding: 10px 25px;
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  width: 25vh
+  width: 25vh;
+  font-weight: bold;
 }
 
 .app-wrapper {
-  display: flex;
   overflow: auto;
   margin: auto;
   flex-direction: column;
   justify-content: center;
   width: 50vw;
   height: 50vh;
-  border: 5px solid #f2eee9;
+  border: 3px solid #f2eee9;
   border-radius: 10px;
   background-color: #003f8c;
-  height: 500px;
+  height: 700px;
 }
 
 .row {
@@ -71,7 +70,57 @@
 }
 
 .table-wrapper {
+  float: left;
   height: 275px;
   justify-content: center;
   display: flex;
+}
+
+.settings {
+  margin: 10px;
+}
+
+.settings-button {
+  background-color: #f2eee9;
+  color: #003f8c;
+  padding: 5px 10px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+}
+
+.header {
+  font-weight: bold;
+  align-items: top;
+  border-bottom: 3px solid;
+}
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-container {
+  display: inline-block;
+  height: 260px;
+}
+
+.results-container {
+  border-top: 3px solid #f2eee9;
+  margin-top: 20px;
+}
+
+.loading {
+  padding-top: 70px;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  animation-duration: 2s;
+  animation-delay: 3s;
 }

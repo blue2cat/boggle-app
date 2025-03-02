@@ -1,6 +1,7 @@
 import React, { useState, useEffect, JSX } from "react";
 import Board from "../interfaces/board";
 import Letter from "./letter";
+import Loading from "./loading";
 
 interface BoggleMatrixProps {
   setResults: React.Dispatch<React.SetStateAction<string[]>>;
@@ -89,11 +90,11 @@ function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
   }
 
   return (
-    <div>
-      <div className="table-wrapper">
+    <div className="matrix">
+      <div className="table-container">
         {loading ? (
-          <div>
-            Loading
+          <div className="loading">
+            <Loading/>
           </div>
         ) : error ? (
           <div>
