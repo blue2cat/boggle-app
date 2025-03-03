@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import gameRoutes from "./api/gameRoutes";
 import Board from "./interfaces/board"
 import Trie from "./api/trie";
@@ -11,29 +11,29 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-// Load the word list and alert the user about any that are too short to 
-// comply with game rules
+// Define global variables used in the game
 declare global {
   var words: Trie;
   var serverBoard: Board;
 }
 
+// Initialize the trie we'll use to store the word list
 global.words = new Trie();
 
+// Load the word list and alert the user about any that are too short to 
+// comply with game rules
 try {
   let totalInvalid = 0;
 
-  // Open the word list file
   let reader = rd.createInterface({
     input: fs.createReadStream("words_large.txt")
   });
 
-  // Read in the words
   reader.on("line", (word: string) => {
     if (word.length < 3) {
       totalInvalid++;
-    }else {
-        global.words.insert(word);
+    } else {
+      global.words.insert(word);
     }
   });
 
@@ -53,10 +53,14 @@ app.use(express.static("../client/build"));
 
 // Define the root route
 app.get("/", (req, res) => {
-  res.sendFile("../client/build/index.html");
+  try {
+    res.sendFile("../client/build/index.html");
+  } catch {
+    res.status(500).send("Unable to load the client app");
+  }
 });
 
-// Register the game routes
+// Register the game API routes
 app.use("/api", gameRoutes);
 
 // Start the server

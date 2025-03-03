@@ -2,7 +2,10 @@ import Board from "../interfaces/board";
 import validChars from "../constants/chars";
 const _ = require('lodash');
 
-// Restrict the matrix to only contain characters from A to Z
+/**
+ * @description - Generate a random board
+ * @returns {Board} - The randomly generated board with characters selected from the validChars array
+*/
 function randomBoard(): Board {
   let newBoard: Board = {
     grid: Array.from({ length: 4 }, () =>
@@ -12,8 +15,10 @@ function randomBoard(): Board {
   return newBoard;
 }
 
-//  @
-//  @returns {Board} - the board
+/**
+ * @description - Get the imported board if it exists, otherwise generate a new board
+ * @returns {Board} - The imported board if it exists, otherwise a new board from randomBoard()
+ */
 function importedBoard(): Board {
   // If we don't have a board, generate one and set as the global board
   if (global.serverBoard == null) {
@@ -23,7 +28,12 @@ function importedBoard(): Board {
   return global.serverBoard;
 }
 
-// validate a board and return json object
+/**
+ * @description - Validate the board and return all valid words found in the board as 
+ * based on the dictionary trie
+ * @param reqBoard - The board to validate as Board
+ * @returns - An array of valid words found in the board
+ */
 function validateBoard(reqBoard: Board): Array<string> {
   // make sure the board is valid
   if (!reqBoard || !reqBoard.grid || reqBoard.grid.length !== 4) {
@@ -58,7 +68,15 @@ function isPrefix(word: string): boolean {
   return global.words.startsWith(word);
 }
 
-
+/**
+ * @description - Perform a depth-first search on the board to find all valid words
+ * @param board - The board to search as Board
+ * @param visited - The visited board as a 2D array of boolean values
+ * @param i - The current row index as number
+ * @param j - The current column index as number
+ * @param word - The current word as string
+ * @param validWords - The set of valid words found as Set<string>
+ */
 function dfs(board: Board, visited: boolean[][], i: number, j: number, word: string, validWords: Set<string>) {
   // If we are out of bounds, return
   if (i < 0 || j < 0 || i >= 4 || j >= 4) {
@@ -80,7 +98,7 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
     visited[i][j] = false; // Ensure backtracking before returning
     return;
   }
-  
+
 
   // If the word is in the trie, add it to the set
   if (isWord(word)) {
@@ -101,7 +119,5 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
   visited[i][j] = false;
 }
 
-
-
 // export the functions
-export { randomBoard, validChars, validateBoard, importedBoard };
+export { randomBoard, importedBoard, validateBoard };

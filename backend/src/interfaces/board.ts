@@ -1,7 +1,8 @@
+/**
+ * @typedef Board
+ * @property {string[][]} grid - The actual playing board as a 2D array of strings (letters)
+ */
 
-// Define the matrix interface consisting of a 4x4 grid of CharType values
-interface Board {
+export default interface Board {
   grid: string[][];
 }
-
-export default Board;
