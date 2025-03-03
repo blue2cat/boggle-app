@@ -1,14 +1,10 @@
-import { Router, Request, Response } from 'express';
-import { importedBoard, randomBoard, validateBoard } from './helpers';
+import { Router } from 'express';
+import { importedBoard, randomBoard, validateBoard } from './boardHelpers';
+import Board from '../interfaces/board';
 const _ = require('lodash');
 
 // Build the API router
 const gameRouter = Router();
-
-gameRouter.use((req, res, next) => {
-  res.header("Content-Type", "application/json");
-  next();
-});
 
 gameRouter.get("/randomBoard", (req, res) => {
   res.json(randomBoard());
@@ -19,7 +15,11 @@ gameRouter.get("/importedBoard", (req, res) => {
 })
 
 gameRouter.post("/submitBoard", (req, res) => {
-  res.json(validateBoard(req.body));
+  // Convert the request body to a JSON object and validate it
+
+  const parsedBoard: Board = req.body;
+
+  res.json(validateBoard(parsedBoard));
 })
 
 export default gameRouter;

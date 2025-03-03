@@ -8,7 +8,7 @@ interface BoggleMatrixProps {
 }
 
 // Build the matrix/board component and store state for the board, loading, and errors
-function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
+function BoggleMatrix({ setResults }: BoggleMatrixProps): JSX.Element {
 
   // Since we're not really dealing with long loading times elsewhere in the app, only display
   // the loading spinner in the matrix/board div
@@ -25,7 +25,7 @@ function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
   function getNewBoard() {
     try {
       setLoading(true)
-      fetch("http://localhost:3001/api/randomBoard")
+      fetch("/api/randomBoard")
         .then((res) => res.json())
         .then((data) => {
           setBoard(data);
@@ -40,7 +40,7 @@ function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
   function getServerImportedBoard() {
     try {
       setLoading(true)
-      fetch("http://localhost:3001/api/importedBoard")
+      fetch("/api/importedBoard")
         .then((res) => res.json())
         .then((data) => {
           setBoard(data);
@@ -53,14 +53,23 @@ function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
 
   function submitBoard() {
     setLoading(true);
-    fetch("http://localhost:3001/api/submitBoard", {
-      method: "POST",
-      body: JSON.stringify(board),
-    }).then((res) => res.json())
-      .then((data) => {
-        setResults(data);
-        setLoading(false);
-      });
+
+    try {
+      fetch("/api/submitBoard", {
+        method: "POST",
+        body: JSON.stringify(board),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json())
+        .then((data) => {
+          setResults(data);
+          setLoading(false);
+        });
+    } catch {
+      setLoading(false);
+      setError(true);
+    }
   }
 
   function renderTable(): JSX.Element {
@@ -94,7 +103,7 @@ function BoggleMatrix({setResults }: BoggleMatrixProps): JSX.Element {
       <div className="table-container">
         {loading ? (
           <div className="loading">
-            <Loading/>
+            <Loading />
           </div>
         ) : error ? (
           <div>

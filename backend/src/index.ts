@@ -1,23 +1,24 @@
 import express, { Request, Response } from "express";
 import gameRoutes from "./api/gameRoutes";
 import Board from "./interfaces/board"
+import Trie from "./api/trie";
 import * as rd from 'readline';
 import * as fs from 'fs';
 
 
 // Define the core app object
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Load the word list and alert the user about any that are too short to 
 // comply with game rules
 declare global {
-  var words: Array<string>;
+  var words: Trie;
   var serverBoard: Board;
 }
 
-global.words = Array<string>();
+global.words = new Trie();
 
 try {
   let totalInvalid = 0;
@@ -28,16 +29,12 @@ try {
   });
 
   // Read in the words
-  reader.on("line", (l: string) => {
-    global.words.push(l);
-    if (l.length < 3) {
+  reader.on("line", (word: string) => {
+    if (word.length < 3) {
       totalInvalid++;
+    }else {
+        global.words.insert(word);
     }
-  });
-
-  // Alert the user to any invalid words that don't meet the game rules
-  reader.on("close", () => {
-    console.log(`Loaded ${global.words.length} words, ${totalInvalid} are invalid. (<3 characters)`);
   });
 
 } catch {
@@ -55,7 +52,7 @@ app.use((req, res, next) => {
 app.use(express.static("../client/build"));
 
 // Define the root route
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.sendFile("../client/build/index.html");
 });
 
