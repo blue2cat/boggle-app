@@ -99,7 +99,6 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
     return;
   }
 
-
   // If the word is in the trie, add it to the set
   if (isWord(word)) {
     validWords.add(word);
@@ -110,7 +109,6 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
     for (let y = -1; y <= 1; y++) {
       if (x !== 0 || y !== 0) {
         dfs(board, [...visited.map(row => [...row])], i + x, j + y, word, validWords);
-
       }
     }
   }
