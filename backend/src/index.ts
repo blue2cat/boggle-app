@@ -8,7 +8,7 @@ import * as fs from 'fs';
 
 // Define the core app object
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.use(express.json());
 
 // Define global variables used in the game

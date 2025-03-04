@@ -14,15 +14,15 @@
 }
 
 .button {
-  background-color: #f2eee9;
-  color: #003f8c;
+  color: #f2eee9;
+  background-color: #003f8c;
+  border: 3px solid #f2eee9;
   padding: 10px 25px;
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 10px;
-  border: none;
   width: 25vh;
   font-weight: bold;
 }
@@ -81,7 +81,7 @@
 }
 
 .settings-button {
-  background-color: #f2eee9;
+  color: #f2eee9;
   color: #003f8c;
   padding: 5px 10px;
   text-align: center;
@@ -121,6 +121,31 @@
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-delay: 3s;
+}
+
+.result-item {
+  font-size: 26px;
+  font-weight: bold;
+  list-style-type: none;
+}
+
+.results-list {
+  column-count: 6;
+}
+
+.no-results-item {
+  font-size: 26px;
+  font-weight: bold;
+  list-style-type: none;
+  color: #f2eee9;
+  padding: 2rem;
+}
+
+.result-header {
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 3px solid;
+  padding-bottom: 20px;
 }

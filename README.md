@@ -23,7 +23,7 @@ npm run start
 ## App Stats
 Given the `words_large.txt` input list, the server responds in an average of ~10ms when queried via Postman with the following request:
 
-```http
+```bash
 {"grid":[["c","a","t","d"],["c","r","l","z"],["m","g","p","j"],["b","e","a","r"]]}
 ```
 

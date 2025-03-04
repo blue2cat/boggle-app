@@ -40,7 +40,12 @@ function BoggleMatrix({ setResults }: BoggleMatrixProps): JSX.Element {
   function getServerImportedBoard() {
     try {
       setLoading(true)
-      fetch("/api/importedBoard")
+      fetch("/api/importedBoard", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+      })
         .then((res) => res.json())
         .then((data) => {
           setBoard(data);
