@@ -1,5 +1,5 @@
 import { importedBoard, randomBoard, validateBoard } from '../../../src/api/routeHelpers';
-import Trie from '../../../src/api/trie';
+import Trie from '../../../src/types/trie';
 
 describe('boardHelpers', () => {
   // Define the global board object used to test importedBoard
