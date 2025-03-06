@@ -1,4 +1,4 @@
-import { importedBoard, randomBoard, validateBoard } from '../../../src/api/boardHelpers';
+import { importedBoard, randomBoard, validateBoard } from '../../../src/api/routeHelpers';
 import Trie from '../../../src/api/trie';
 
 describe('boardHelpers', () => {

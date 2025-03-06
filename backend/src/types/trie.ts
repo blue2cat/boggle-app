@@ -37,6 +37,7 @@ class TrieNode {
  * @method insert - Inserts a word into the trie
  * @method search - Searches for a word in the trie
  * @method startsWith - Searches for a prefix in the trie
+ * @typedef {Trie}
  */
 class Trie {
   root: TrieNode;
@@ -48,19 +49,16 @@ class Trie {
   // Insert a word into the trie
   insert(word: string): void {
 
-    // Start at the root node of the trie
     let node = this.root;
 
     // Iterate through the characters of the word
     for (let i = 0; i < word.length; i++) {
 
-      // Get the current character from the word
       let letter = word.charAt(i);
 
       // Get the child node for the current character
       let child = node.children.get(letter);
 
-      // If the child node is not found, create a new node
       if (!child) {
         child = new TrieNode();
         node.children.set(letter, child);
@@ -77,13 +75,11 @@ class Trie {
   // Search for a word in the trie
   search(word: string): boolean {
 
-    // Start at the root node
     let node = this.root;
 
     // Iterate through the characters of the word
     for (let i = 0; i < word.length; i++) {
 
-      // Get the current character from the word
       let letter = word.charAt(i);
 
       // Get the child node for the current character
@@ -98,7 +94,8 @@ class Trie {
       node = child;
     }
 
-    // If we've made it this far and we've marked it as the end of a word, the word is in the trie
+    // If we've made it this far and we've marked it as the 
+    // end of a word, the word is in the trie
     return node.isEndOfWord;
   }
 
@@ -111,7 +108,6 @@ class Trie {
     // Iterate through the prefix characters
     for (let i = 0; i < prefix.length; i++) {
 
-      // Pull the current character from the prefix
       let letter = prefix.charAt(i);
 
       // Get the child node for the current character

@@ -1,5 +1,6 @@
 import Board from "../interfaces/board";
 import validChars from "../constants/chars";
+import { validateBoardProps } from "../helpers/boardHelpers";
 const _ = require('lodash');
 
 /**
@@ -20,7 +21,6 @@ function randomBoard(): Board {
  * @returns {Board} - The imported board if it exists, otherwise a new board from randomBoard()
  */
 function importedBoard(): Board {
-  // If we don't have a board, generate one and set as the global board
   if (global.serverBoard == null) {
     global.serverBoard = randomBoard();
   }
@@ -29,17 +29,17 @@ function importedBoard(): Board {
 }
 
 /**
- * @description - Validate the board and return all valid words found in the board as 
+ * @description - Validate the board and return all valid words found in the board as
  * based on the dictionary trie
  * @param reqBoard - The board to validate as Board
  * @returns - An array of valid words found in the board
  */
 function validateBoard(reqBoard: Board): Array<string> {
-  // make sure the board is valid
-  if (!reqBoard || !reqBoard.grid || reqBoard.grid.length !== 4) {
+  // Make sure the board is valid
+  if (!validateBoardProps(reqBoard)) {
     return [];
   }
-
+  
   // Create a visited board of boolean values with all cells set to false
   let visited: boolean[][] = Array.from({ length: 4 }, () =>
     Array.from({ length: 4 }, () => false)
@@ -94,8 +94,9 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
   // Append the character to the word
   word += board.grid[i][j];
 
+  // Backtrack before returning
   if (!isPrefix(word)) {
-    visited[i][j] = false; // Ensure backtracking before returning
+    visited[i][j] = false; 
     return;
   }
 
@@ -108,12 +109,12 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
   for (let x = -1; x <= 1; x++) {
     for (let y = -1; y <= 1; y++) {
       if (x !== 0 || y !== 0) {
-        dfs(board, [...visited.map(row => [...row])], i + x, j + y, word, validWords);
+        dfs(board, visited, i + x, j + y, word, validWords);
       }
     }
   }
 
-  // Unmark the cell as visited
+  // Mark the cell as not visited
   visited[i][j] = false;
 }
 

@@ -1,5 +1,5 @@
-# Node.js backend
+# Node/Typescript backend
+This is the backend for my demo Boggle project. It's a Node/Express written in TypeScript. The bulk of the game logic is present in `src/api/boardHelpers.ts and src/api/trie.ts`. 
 
-This is the backend for the Boggle project. It's a Node.js application that uses Express.js to serve the frontend and provide an API for the frontend to interact with.
-
-`wordlist_large.txt` - This file with 370106 possible words is all but guaranteed to generate a heathy list of results for any given Boggle board. =
+## Implementation Notes
+`words_large.txt` - This file with 370106 possible words is all but guaranteed to generate a heathy list of results for any given Boggle board. It is the default word list used by the server. See [App Features](../README.md#app-features) for more information on custom word lists and server boards.
