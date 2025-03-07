@@ -113,11 +113,11 @@ function BoggleMatrix(): JSX.Element {
       </div>
       <div className="results-container">
         <h2 className="result-header">results</h2>
-        <ul className="results-list">
+        <div className="results-list">
           {results[0] !== "no results" && results.map((result, i) => (
-            <li key={i} className="result-item">{result}</li>
+            <div key={i} className="result-item">{result}</div>
           ))}
-        </ul>
+        </div>
         {results[0] === "no results" && <li className="no-results-item">No results found</li>}
       </div>
     </div>

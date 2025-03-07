@@ -9,15 +9,16 @@
 }
 
 .app-wrapper {
+  margin-top: 10px;
   margin: auto;
-  flex-direction: column;
-  justify-content: center;
   width: auto;
   height: auto;
-  border: 3px solid #f2eee9;
+  border: 2px solid #f2eee9;
   border-radius: 20px;
   background-color: #003f8c;
   padding: 40px;
+  padding-top: 0px;
+  padding-bottom: 15px;
 }
 
 .header {
