@@ -71,11 +71,11 @@ function BoggleMatrix(): JSX.Element {
 
   return (
     <div>
-            <div className="button-container">
-          <button className="button" onClick={getNewBoard}>new board</button>
-          <button className="button" onClick={getServerImportedBoard}>use server board</button>
-          <button className="button" onClick={submitBoard}>submit</button>
-        </div>
+      <div className="button-container">
+        <button className="button" onClick={getNewBoard}>new board</button>
+        <button className="button" onClick={getServerImportedBoard}>use server board</button>
+        <button className="button" onClick={submitBoard}>submit</button>
+      </div>
       <div className="matrix">
 
         <div className="table-container">

@@ -37,6 +37,7 @@ try {
     console.log("Reading in the word list from:", wordListPath);
   }
 
+  // Stream the file in and insert each word into the trie
   const reader = rd.createInterface({
     input: fs.createReadStream(wordListPath)
   });

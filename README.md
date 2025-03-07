@@ -41,7 +41,7 @@ To use a custom Boggle board, add an environment variable `BOARD` with the path 
 
 ```bash
 $env:BOARD = "board.json"
-npm start -- --board path/to/custom/board.json
+npm start
 ```
 
 The format of the custom Boggle board should be a JSON object with a `grid` key that contains a 4x4 array of letters. For example:
@@ -56,6 +56,8 @@ The format of the custom Boggle board should be a JSON object with a `grid` key 
   ]
 }
 ```
+
+Notes that these environment variables can be combined to use both a custom word list and a custom Boggle board.
 
 ### Development
 To run the app in development mode, run the following command from the root of the repository:

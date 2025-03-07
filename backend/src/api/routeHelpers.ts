@@ -55,7 +55,7 @@ function validateBoard(reqBoard: Board): Array<string> {
   }
 
   // Convert the set to an array and return it
-  return Array.from(validWords);
+  return Array.from(validWords).sort();
 }
 
 // Check if the word is a valid word
