@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="app">
       <div className="app-wrapper">
-        <Header title="Boggle 🎲" />
+        <Header title="boggle" />
         <BoggleMatrix />
       </div>
     </div>

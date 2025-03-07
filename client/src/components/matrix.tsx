@@ -70,48 +70,49 @@ function BoggleMatrix(): JSX.Element {
   }
 
   return (
-    <div className="matrix">
-      <div className="button-container">
-        <button className="button" onClick={getNewBoard}>New Board</button>
-        <button className="button" onClick={getServerImportedBoard}>Use Server Board</button>
-        <button className="button" onClick={submitBoard}>Submit</button>
-      </div>
-      <div className="table-container">
-        {loading ? (
-          <div className="loading">
+    <div>
+            <div className="button-container">
+          <button className="button" onClick={getNewBoard}>new board</button>
+          <button className="button" onClick={getServerImportedBoard}>use server board</button>
+          <button className="button" onClick={submitBoard}>submit</button>
+        </div>
+      <div className="matrix">
 
-          </div>
-        ) : error ? (
-          <div>
-            Error loading board
-          </div>
-        ) :
-          (
+        <div className="table-container">
+          {loading ? (
+            null
+          ) : error ? (
+            <div>
+              Error loading board
+            </div>
+          ) :
+            (
               <div className="table-wrapper">
                 <table className="table">
                   <tbody>
                     {board.grid.map((row, x) => (
                       <tr key={x} className="row">
                         {row.map((letter, y) => (
-                            <Letter
-                              letter={letter}
-                              board={board}
-                              setBoard={setBoard}
-                              x={x}
-                              y={y}
-                              key={y}
-                            />
+                          <Letter
+                            letter={letter}
+                            board={board}
+                            setBoard={setBoard}
+                            x={x}
+                            y={y}
+                            key={y}
+                          />
                         ))}
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-          )
-        }
+            )
+          }
+        </div>
       </div>
       <div className="results-container">
-        <h2 className="result-header">Results</h2>
+        <h2 className="result-header">results</h2>
         <ul className="results-list">
           {results[0] !== "no results" && results.map((result, i) => (
             <li key={i} className="result-item">{result}</li>
@@ -122,5 +123,6 @@ function BoggleMatrix(): JSX.Element {
     </div>
   );
 }
+
 
 export default BoggleMatrix;
