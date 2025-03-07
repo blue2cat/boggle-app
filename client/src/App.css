@@ -13,8 +13,7 @@
 }
 
 .app-wrapper {
-  margin-top: 10px;
-  margin: auto;
+  margin: 30px auto;
   width: auto;
   height: auto;
   border: 2px solid #f2eee9;
@@ -24,10 +23,6 @@
   padding-top: 0px;
   padding-bottom: 15px;
   max-height: 100vh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .header {
@@ -63,6 +58,7 @@
 .table-container {
   display: inline-block;
   height: 260px;
+  overflow: hidden;
 }
 
 .table-wrapper {
@@ -111,7 +107,7 @@
 
 .results-container {
   margin-top: 20px;
-  overflow: auto;
+  margin-bottom: 10px;
 }
 
 .result-header {
@@ -126,6 +122,8 @@
 }
 
 .results-list {
+  overflow-y: auto;
+  max-height: 30vh;
   column-count: 6;
 }
 
