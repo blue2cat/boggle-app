@@ -21,7 +21,13 @@ gameRouter.post("/submitBoard", (req, res) => {
 
   // Parse the board from the request body
   const parsedBoard: Board = req.body;
-  res.json(validateBoard(parsedBoard));
+
+  try {
+    // Validate the board and return the valid words
+    res.json(validateBoard(parsedBoard));
+  } catch (e) {
+    res.status(400).json({ error: "error processing board" });
+  }
 })
 
 export default gameRouter;

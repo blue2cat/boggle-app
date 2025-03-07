@@ -1,10 +1,7 @@
 # Boggle Game 
 This is a Boggle game that can be played in the browser. The game is built using React and Node.js. The server finds as many words as possible from a given Boggle board.
 
-Both frontend and backend are in the same repository. The frontend is in the `client` directory and the backend is in the `backend` directory. The modules are separated via NPM workspaces. See [App Setup](#app-setup) for more information. 
-
-### Boggle Board
-The Boggle board is a 4x4 grid of letters. The server finds words on the board by iterating through each letter on the board and finding all possible words that start with that letter. The server uses a depth-first search to find words on the board.
+Both the frontend and backend are in the same repository.See [App Setup](#app-setup) for more information. 
 
 ## App Setup
 As mentioned above, the app uses NPM workspaces to separate the frontend and backend modules. To run the app, execute the following commands from the root of the repo:
@@ -31,7 +28,8 @@ npm start
 The format of the custom word list should be one word per line formatted as a regular text file. See `backend/words_large.txt` for example formatting.
 
 ### Providing a Custom Boggle Board
-The default Boggle board is randomly generated. You can edit it by clicking on the letters in the UI. Alerternatively, you can use a custom Boggle board by providing a JSON object with a 4x4 grid of letters. To use a custom Boggle board provided to the server, add an environment variable `BOARD` with the path to the custom Boggle board. For example on Windows:
+
+The Boggle board is a 4x4 grid of letters. The default Boggle board is randomly generated. You can edit it by clicking on the letters in the UI. Alternatively, you can use a custom Boggle board by providing a JSON object with a 4x4 grid of letters. To use a custom Boggle board provided to the server, add an environment variable `BOARD` with the path to the custom Boggle board. For example on Windows:
 
 ```bash
 $env:BOARD = "board.json"
@@ -80,4 +78,3 @@ Given the `words_large.txt` (370105 lines) input file, the server responds in an
 ```bash
 {"grid":[["c","a","t","d"],["c","r","l","z"],["m","g","p","j"],["b","e","a","r"]]}
 ```
-

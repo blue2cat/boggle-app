@@ -5,11 +5,15 @@ import Trie from "./types/trie";
 import * as rd from 'readline';
 import * as fs from 'fs';
 import { validateBoardProps } from "./helpers/boardHelpers";
+const bodyParserErrorHandler = require('express-body-parser-error-handler')
 
 // Define the core app object
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+// Enable middleware
 app.use(express.json());
+app.use(bodyParserErrorHandler());
 
 // Define global variables used in the game
 declare global {
@@ -33,7 +37,7 @@ try {
   if (!fs.existsSync(wordListPath)) {
     console.error("File not found:", wordListPath);
     process.exit(1);
-  }else {
+  } else {
     console.log("Reading in the word list from:", wordListPath);
   }
 
@@ -50,7 +54,7 @@ try {
       global.words.insert(word);
     }
   })
-  
+
   reader.on("close", () => {
     console.log(totalInvalid, "words were too short to be included in the game.");
     console.log(totalWords, "valid words were inserted.");
@@ -67,7 +71,7 @@ if (boardPath) {
     if (!fs.existsSync(boardPath)) {
       console.error("File not found:", boardPath);
       process.exit(1);
-    }else {
+    } else {
       console.log("Reading in the board from:", boardPath);
     }
 
@@ -79,7 +83,7 @@ if (boardPath) {
       process.exit(1);
     }
 
-    global.serverBoard = board;  
+    global.serverBoard = board;
   } catch {
     console.error("Unable to read in the board file, exiting. ");
     process.exit(1);

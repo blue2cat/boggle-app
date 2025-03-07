@@ -37,9 +37,9 @@ function importedBoard(): Board {
 function validateBoard(reqBoard: Board): Array<string> {
   // Make sure the board is valid
   if (!validateBoardProps(reqBoard)) {
-    return [];
+    return ["Invalid board provided, exiting. Please see the README for board requirements."];
   }
-  
+
   // Create a visited board of boolean values with all cells set to false
   let visited: boolean[][] = Array.from({ length: 4 }, () =>
     Array.from({ length: 4 }, () => false)
@@ -96,7 +96,7 @@ function dfs(board: Board, visited: boolean[][], i: number, j: number, word: str
 
   // Backtrack before returning
   if (!isPrefix(word)) {
-    visited[i][j] = false; 
+    visited[i][j] = false;
     return;
   }
 
