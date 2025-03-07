@@ -1,10 +1,10 @@
 # Boggle Game 
 This is a Boggle game that can be played in the browser. The game is built using React and Node.js. The server finds as many words as possible from a given Boggle board.
 
-Both the frontend and backend are in the same repository.See [App Setup](#app-setup) for more information. 
+Both the frontend and backend are in the same repository. See [App Setup](#app-setup) for more information. 
 
 ## App Setup
-As mentioned above, the app uses NPM workspaces to separate the frontend and backend modules. To run the app, execute the following commands from the root of the repo:
+The app uses NPM workspaces to separate the frontend and backend modules. To run the app, execute the following commands from the root of the repo:
 
 ```bash
 npm install
